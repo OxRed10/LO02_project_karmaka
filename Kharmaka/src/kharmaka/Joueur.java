@@ -5,10 +5,10 @@ import java.util.*;
 
 public class Joueur {
 	private String nom;
-	private ArrayList<Carte>vieFuture;
-	private ArrayList<Carte>pile;
-	private ArrayList<Carte>oeuvres;
-	private ArrayList<Carte>main;
+	private Stack<Carte>vieFuture;
+	private Stack<Carte>pile;
+	private Stack<Carte>oeuvres;
+	private Stack<Carte>main;
 	private int echelleKarmique = 4;
 	private AnneauxKarmiques anneauxKarmiques;
 
@@ -16,24 +16,58 @@ public class Joueur {
 	// Constructeur
 	public Joueur(String nom) {
 		this.nom = nom;
-		this.vieFuture = new ArrayList<Carte>();
-		this.oeuvres = new ArrayList<Carte>();
-		this.pile = new ArrayList<Carte>();
-		this.main = new ArrayList<Carte>();
+		this.vieFuture = new Stack<Carte>();
+		this.oeuvres = new Stack<Carte>();
+		this.pile = new Stack<Carte>();
+		this.main = new Stack<Carte>();
 		this.anneauxKarmiques = new AnneauxKarmiques();
 
 	}
 
+	public Stack<Carte> getMain() {
+		return main;
+	}
 	public void addCarteMain (Carte carte){
-		Main.addCarte(carte);
+		main.push(carte);
+	}
+	public Carte removeCarteMain(){
+		Carte carteTransfert = main.pop();
+		System.out.println("Vous avez piochez :" + carteTransfert);
+		return carteTransfert;
 	}
 
+	public Stack<Carte> getPile() {
+		return pile;
+	}
 	public void addCartePile (Carte carte){
-		Pile.addCarte(carte);
+		pile.push(carte);
+	}
+	public Carte removeCartePile(){
+		Carte carteTransfert = pile.pop();
+		System.out.println("Vous avez piochez :" + carteTransfert);
+		return carteTransfert;
 	}
 
-	public Carte removeCartePile(){
-		Carte carteTransfert = Pile.removeDerniereCarte();
+	public Stack<Carte> getOeuvre() {
+		return oeuvres;
+	}
+	public void addCarteOeuvre (Carte carte){
+		oeuvres.push(carte);
+	}
+	public Carte removeCarteOeuvre(){
+		Carte carteTransfert = oeuvres.pop();
+		System.out.println("Vous avez piochez :" + carteTransfert);
+		return carteTransfert;
+	}
+
+	public Stack<Carte> getVieFuture() {
+		return vieFuture;
+	}
+	public void addCarteVieFuture (Carte carte){
+		vieFuture.push(carte);
+	}
+	public Carte removeCarteVieFuture(){
+		Carte carteTransfert = main.pop();
 		System.out.println("Vous avez piochez :" + carteTransfert);
 		return carteTransfert;
 	}
